@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Memento Mori Countdown</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Memento Mori Countdown</h1>
+  <label for="birthDate">Birth Date:</label>
+  <input type="date" id="birthDate" name="birthDate"><br>
+  <label for="lifeExpectancy">Life Expectancy (years):</label>
+  <input type="number" id="lifeExpectancy" name="lifeExpectancy" min="1" max="150" value="80"><br>
+  <button id="saveButton">Save</button>
+  <hr>
+  <h2>Time Remaining:</h2>
+  <p id="countdown"></p>
+  <script src="popup.js"></script>
+</body>
+</html>

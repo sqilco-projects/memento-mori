@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "Memento Mori Countdown",
+    "version": "1.0",
+    "description": "A countdown timer that reminds you of the limited time you have left on this planet.",
+    "icons": {
+      "128": "icon.png"
+    },
+    "permissions": [
+      "storage"
+    ],
+    "browser_action": {
+      "default_popup": "popup.html"
+    }
+  }
