@@ -1,10 +1,12 @@
-const birthDateInput = document.getElementById('birthDate');
-const lifeExpectancyInput = document.getElementById('lifeExpectancy');
-const saveButton = document.getElementById('saveButton');
-const countdownElement = document.getElementById('countdown');
+const birthDateInput = document.getElementById("birthDate");
+const lifeExpectancyInput = document.getElementById("lifeExpectancy");
+const saveButton = document.getElementById("saveButton");
+const countdownElement = document.getElementById("countdown");
+const lifeProgressElement = document.getElementById("lifeProgress");
+const lifeProgressBarElement = document.getElementById("lifeProgressBar");
 
 // Load saved data
-chrome.storage.sync.get(['birthDate', 'lifeExpectancy'], (data) => {
+chrome.storage.sync.get(["birthDate", "lifeExpectancy"], (data) => {
   if (data.birthDate) {
     birthDateInput.value = data.birthDate;
   }
@@ -12,10 +14,10 @@ chrome.storage.sync.get(['birthDate', 'lifeExpectancy'], (data) => {
     lifeExpectancyInput.value = data.lifeExpectancy;
   }
   updateCountdown();
+  updateLifeProgress();
 });
 
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   var lifeExpectancyInput = document.getElementById("lifeExpectancy");
   lifeExpectancyInput.addEventListener("input", validateLifeExpectancy);
 
@@ -24,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var warningElement = document.getElementById("warning");
 
     if (lifeExpectancy < 0) {
-      warningElement.textContent = "Life expectancy can only be a positive number.";
+      warningElement.textContent =
+        "Life expectancy can only be a positive number.";
       lifeExpectancyInput.value = "";
     } else {
       warningElement.textContent = "";
@@ -32,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-
 // Save data when the Save button is clicked
-saveButton.addEventListener('click', () => {
-  console.log("Hello and HI checking")
+saveButton.addEventListener("click", () => {
+  console.log("Hello and HI checking");
   const birthDate = birthDateInput.value;
   const lifeExpectancy = lifeExpectancyInput.value;
   chrome.storage.sync.set({ birthDate, lifeExpectancy }, () => {
     updateCountdown();
+    updateLifeProgress();
   });
 });
 
@@ -61,12 +64,39 @@ function updateCountdown() {
     }
 
     const years = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 365));
-    const months = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
-    const days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const months = Math.floor(
+      (timeRemaining % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30)
+    );
+    const days = Math.floor(
+      (timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24)
+    );
+    const hours = Math.floor(
+      (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+    );
     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
     countdownElement.textContent = `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
   }, 1000);
+}
+
+// Update the life progress display
+function updateLifeProgress() {
+  const birthDate = new Date(birthDateInput.value);
+  const lifeExpectancy = parseInt(lifeExpectancyInput.value, 10);
+  const now = new Date();
+  const ageInMilliseconds = now - birthDate;
+  const lifeExpectancyInMilliseconds =
+    lifeExpectancy * 365.25 * 24 * 60 * 60 * 1000;
+  const lifeProgressPercentage =
+    (ageInMilliseconds / lifeExpectancyInMilliseconds) * 100;
+
+    
+    lifeProgressElement.textContent = `${lifeProgressPercentage.toFixed(2)}%`;
+    // lifeProgressBarElement.value = lifeProgressPercentage;
+  document.querySelector(
+    ".progress-bar-fill"
+  ).style.width = `${lifeProgressPercentage}%`;
 }

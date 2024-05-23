@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Memento Mori Countdown</title>
-  <style>
-    body {
-      width: 300px;
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-  <h1> &#x2620;&#xFE0F; Memento Mori &#x2620;&#xFE0F;</h1>
-  <label for="birthDate">Birth Date:</label>
-  <input type="date" id="birthDate" name="birthDate"><br>
-  <label for="lifeExpectancy">Life Expectancy (years):</label>
-  <input type="number" id="lifeExpectancy" name="lifeExpectancy" min="0" max="150" value="80"><br>
-  <span id="warning" style="color: red;"></span>
-  <button id="saveButton">Save</button>
-  <hr>
-  <h2>Time Remaining:</h2>
-  <p id="countdown"></p>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <title>Memento Mori Countdown</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>&#x2620;&#xFE0F; Memento Mori &#x2620;&#xFE0F;</h1>
+    <label for="birthDate">Birth Date:</label>
+    <input type="date" id="birthDate" name="birthDate" /><br />
+    <label for="lifeExpectancy">Life Expectancy (years):</label>
+    <input
+      type="number"
+      id="lifeExpectancy"
+      name="lifeExpectancy"
+      min="0"
+      max="150"
+      value="80"
+    /><br />
+    <span id="warning" style="color: red"></span>
+    <button id="saveButton">Save</button>
+    <hr />
+    <h2>Life Progress:</h2>
+    <p id="lifeProgress"></p>
+    <div class="progress-bar-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill"></div>
+        <div class="progress-bar-text" id="lifeProgress"></div>
+      </div>
+    </div>
+    <hr />
+    <h2>Time Remaining:</h2>
+    <p id="countdown"></p>
+    <script src="popup.js"></script>
+  </body>
 </html>
