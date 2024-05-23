@@ -14,8 +14,28 @@ chrome.storage.sync.get(['birthDate', 'lifeExpectancy'], (data) => {
   updateCountdown();
 });
 
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lifeExpectancyInput = document.getElementById("lifeExpectancy");
+  lifeExpectancyInput.addEventListener("input", validateLifeExpectancy);
+
+  function validateLifeExpectancy() {
+    var lifeExpectancy = lifeExpectancyInput.value;
+    var warningElement = document.getElementById("warning");
+
+    if (lifeExpectancy < 0) {
+      warningElement.textContent = "Life expectancy can only be a positive number.";
+      lifeExpectancyInput.value = "";
+    } else {
+      warningElement.textContent = "";
+    }
+  }
+});
+
+
 // Save data when the Save button is clicked
 saveButton.addEventListener('click', () => {
+  console.log("Hello and HI checking")
   const birthDate = birthDateInput.value;
   const lifeExpectancy = lifeExpectancyInput.value;
   chrome.storage.sync.set({ birthDate, lifeExpectancy }, () => {
