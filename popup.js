@@ -6,6 +6,7 @@ const lifeProgressElement = document.getElementById("lifeProgress");
 const lifeProgressBarElement = document.getElementById("lifeProgressBar");
 let countdownInterval = null;
 
+
 // Load saved data
 chrome.storage.sync.get(["birthDate", "lifeExpectancy"], (data) => {
   if (data.birthDate) {
