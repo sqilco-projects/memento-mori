@@ -19,7 +19,6 @@
     <button id="saveButton" class="save-button">Save</button>
     <div class="section">
       <h2 class="section-title">Life Progress:</h2>
-      
       <p id="lifeProgress" class="life-progress-text"></p>
       <div class="progress-bar-container">
         <div class="progress-bar">
@@ -27,12 +26,18 @@
           <div class="progress-bar-text" id="lifeProgress"></div>
         </div>
       </div>
+      <!-- Add HTML elements for the stopwatch -->
+<div>
+  <label for="stopwatchTime">Stopwatch:</label>
+  <span id="stopwatchTime">00:00:00</span>
+  <button id="startStopwatchBtn">Start</button>
+  <button id="resetStopwatchBtn">Reset</button>
+</div>
+
+</div>
     </div>
     <div class="section">
-      <h2 class="section-title">Time Remaining &#x1F550;: </h2>
-      <!-- <span></span> Unicode clock icon -->
-      <!-- <i class="fas">&#xf017;</i> Font Awesome clock icon -->
-    
+      <h2 class="section-title">Time Remaining:</h2>
       <p id="countdown" class="countdown-text"></p>
     </div>
   </div>

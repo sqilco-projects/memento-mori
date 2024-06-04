@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #151515;
   margin: 0;
   padding: 0;
 }
@@ -9,7 +9,7 @@ body {
   width: 300px;
   margin: 20px;
   padding: 20px;
-  background-color: #ddeb9e; 
+  background-color: #fbf0f0;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -78,7 +78,6 @@ label {
   margin-bottom: 10px;
 }
 
-
 .progress-bar-container {
   width: 100%;
   height: 30px;
@@ -138,5 +137,88 @@ label {
   font-weight: bold;
   color: #333;
   text-align: center;
+}
+
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Container Styles */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Styles */
+input[type="date"],
+input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button Styles */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Countdown Styles */
+#countdown {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Life Progress Styles */
+.progress-container {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 10px;
+  text-align: right;
+  padding-right: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Stopwatch Styles */
+#stopwatchTime {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Warning Styles */
+#warning {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
 }
 

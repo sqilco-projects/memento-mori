@@ -4,8 +4,12 @@ const saveButton = document.getElementById("saveButton");
 const countdownElement = document.getElementById("countdown");
 const lifeProgressElement = document.getElementById("lifeProgress");
 const lifeProgressBarElement = document.getElementById("lifeProgressBar");
+const stopwatchTimeElement = document.getElementById("stopwatchTime");
+const startStopwatchBtn = document.getElementById("startStopwatchBtn");
+const resetStopwatchBtn = document.getElementById("resetStopwatchBtn");
 let countdownInterval = null;
-
+let stopwatchInterval = null;
+let stopwatchStartTime = null;
 
 // Load saved data
 chrome.storage.sync.get(["birthDate", "lifeExpectancy"], (data) => {
@@ -139,4 +143,44 @@ function updateDisplays() {
 
   lifeProgressElement.textContent = `${lifeProgressPercentage.toFixed(2)}%`;
   document.querySelector(".progress-bar-fill").style.width = `${lifeProgressPercentage}%`;
+}
+// Stopwatch functionality
+startStopwatchBtn.addEventListener("click", () => {
+  if (stopwatchInterval === null) {
+    startStopwatch();
+    startStopwatchBtn.textContent = "Stop";
+  } 
+  else {
+    stopStopwatch();
+    startStopwatchBtn.textContent = "Start";
+  }
+});
+
+resetStopwatchBtn.addEventListener("click", () => {
+  stopStopwatch();
+  stopwatchTimeElement.textContent = "00:00:00";
+});
+
+function startStopwatch() {
+  stopwatchStartTime = Date.now();
+  stopwatchInterval = setInterval(updateStopwatch, 1000);
+}
+
+function stopStopwatch() {
+  clearInterval(stopwatchInterval);
+  stopwatchInterval = null;
+}
+
+function updateStopwatch() {
+  const elapsedTime = Date.now() - stopwatchStartTime;
+  const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+  const minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+  stopwatchTimeElement.textContent = `${padZero(hours)}:${padZero(
+    minutes
+  )}:${padZero(seconds)}`;
+}
+
+function padZero(number) {
+  return number.toString().padStart(2, "0");
 }
